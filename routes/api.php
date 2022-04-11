@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post("/register", [ApiAuthController::class, "register"]);
 // login
 Route::post("/login", [ApiAuthController::class, "login"]);
+// forgot_password
+Route::post("/forgot_password", [ApiAuthController::class, "forgot_password"]);
 
 Route::group(["middleware" => ["auth:sanctum"]], function(){
 
