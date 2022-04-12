@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,7 @@ Route::get('/', function () {
 
 Route::get("/logout", [AuthenticatedSessionController::class, "destroy"])->name("auth.logout");
 Route::get("/forgot-password", [PasswordResetLinkController::class, "create"])->name("auth.forgot-password");
+
+
+// category
+Route::get("/category/index", [CategoryController::class, "index"])->name("category.index");
