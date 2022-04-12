@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,15 @@ Route::get("/forgot-password", [PasswordResetLinkController::class, "create"])->
 
 // category
 Route::get("/category/index", [CategoryController::class, "index"])->name("category.index");
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//                                         Product                                       //
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product/create', [ProductController::class, 'create']);
+Route::get('/product/store', [ProductController::class, 'store'])->name('product/store');
