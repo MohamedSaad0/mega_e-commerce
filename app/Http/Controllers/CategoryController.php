@@ -15,7 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view("admin.category.show_all");
+        $categories = Category::all();
+        return view("admin.category.show_all", compact("categories"));
     }
 
     /**
@@ -26,6 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view("admin.category.create");
     }
 
     /**
@@ -37,6 +39,23 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            "name" => "required",
+            "description" => "required",
+            "image" => "required",
+        ]);
+        $category = new Category();
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+        $image = $request->file("image");
+        $extension = $image->getClientOriginalExtension();
+        $image_name = uniqid() . "." . $extension;
+        $image->move(public_path("images/"), $image_name);
+
+        $category->image = $image_name;
+        $category->save();
+        return redirect("/category/index")->with("success", "category created successfully");
     }
 
     /**
@@ -45,9 +64,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Category $category, $id)
     {
         //
+        $category = Category::find($id);
+        return view("admin.category.show", compact("category"));
     }
 
     /**
@@ -56,9 +77,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
         //
+        $category = Category::find($id);
+        return view("admin.category.edit", compact("category"));
     }
 
     /**
@@ -68,9 +91,40 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
         //
+        //
+        $request->validate([
+            "name" => "string|min:3|max:255",
+            "description" => "string|min:3|max:255",
+            "image" => "image|mimes:png,jpg",
+        ]);
+        $category = Category::find($request->id);
+
+        if($category)
+        {
+            if(!empty($request->name)){
+                $category->name = $request->name;
+            }
+            if(!empty($request->name)){
+                $category->description = $request->description;
+            }
+
+            if($request->hasFile("image")){
+                if($category->image){
+                    unlink(public_path("images/") . $category->image);
+                }
+                $image = $request->file("image");
+                $extension = $image->getClientOriginalExtension();
+                $image_name = uniqid() . "." . $extension;
+                $image->move(public_path("images/"), $image_name);
+                $category->image = $image_name;
+            }
+            $category->image = $category->image;
+            $category->save();
+            return redirect("/category/index")->with("success", "category created successfully");
+        }
     }
 
     /**
@@ -79,8 +133,14 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
         //
+        $category = Category::find($id);
+        if($category->image){
+            unlink(public_path("images/") . $category->image);
+        }
+        $category->delete();
+        return redirect("/category/index")->with("danger", "category delete successfully");
     }
 }

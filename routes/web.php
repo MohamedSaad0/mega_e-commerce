@@ -34,5 +34,14 @@ Route::get("/logout", [AuthenticatedSessionController::class, "destroy"])->name(
 Route::get("/forgot-password", [PasswordResetLinkController::class, "create"])->name("auth.forgot-password");
 
 
-// category
-Route::get("/category/index", [CategoryController::class, "index"])->name("category.index");
+Route::middleware(["auth"])->group(function () {
+    // category
+    Route::get("/category/index", [CategoryController::class, "index"])->name("category.index");
+    Route::get("/category/create", [CategoryController::class, "create"])->name("category.create");
+    Route::post("/category/store", [CategoryController::class, "store"])->name("category.store");
+    Route::get("/category/show/{id}", [CategoryController::class, "show"])->name("category.show");
+    Route::get("/category/edit/{id}", [CategoryController::class, "edit"])->name("category.edit");
+    Route::post("/category/update", [CategoryController::class, "update"])->name("category.update");
+    Route::get("/category/destroy/{id}", [CategoryController::class, "destroy"])->name("category.destroy");
+    // category
+});

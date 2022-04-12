@@ -5,7 +5,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-        <a href="#" class="btn btn-success btn-icon-split">
+        <a href="{{ route('category.create') }}" class="btn btn-success btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-check"></i>
             </span>
@@ -21,7 +21,6 @@
                             <th>id</th>
                             <th>name</th>
                             <th>description</th>
-                            <th>created_at</th>
                             <th>show</th>
                             <th>edit</th>
                             <th>delete</th>
@@ -29,23 +28,23 @@
                     </thead>
                     <tbody>
 
+                        @foreach ($categories as $category)                            
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>System Architect</td>
-                            <td>2011/04/25</td>
-                            <td><a href="#" class="btn btn-primary">show</a></td>
-                            <td><a href="#" class="btn btn-warning">edit</a></td>
-                            <td><a href="#" class="btn btn-danger">delete</a></td>
+                            <td>{{ $category->id }}</td>
+                            <td>{{ $category->name }}</td>
+                            <td>{{ $category->description }}</td>
+                            <td><a href='{{ url("/category/show/$category->id") }}' class="btn btn-primary">show</a></td>
+                            <td><a href='{{ url("/category/edit/$category->id") }}' class="btn btn-warning">edit</a></td>
+                            <td><a href='{{ url("/category/destroy/$category->id") }}' class="btn btn-danger">delete</a></td>
                         </tr>
+                        @endforeach
 
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>id</th>
+                        <th>id</th>
                             <th>name</th>
                             <th>description</th>
-                            <th>created_at</th>
                             <th>show</th>
                             <th>edit</th>
                             <th>delete</th>
