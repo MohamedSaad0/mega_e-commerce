@@ -56,17 +56,11 @@ Route::get("/category/index", [CategoryController::class, "index"])->name("categ
 
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create']);
-<<<<<<< HEAD
-Route::get('/product/store', [ProductController::class, 'store'])->name('product.store');
-=======
-<<<<<<< HEAD
+
+
 Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
 Route::get('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
 Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::patch('/product/update/{id}', [ProductController::class, 'update']);
-=======
-Route::get('/product/store', [ProductController::class, 'store'])->name('product/store');
->>>>>>> 2033155d6d1a31c219bb6da0b08c28755fe2c460
-
->>>>>>> 4a699caaeba150ed179491f5bb51b813565f8b1e
+Route::get('/product/store', [ProductController::class, 'store'])->name('product.store');
