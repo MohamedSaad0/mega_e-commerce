@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('image');
             $table->string('price');
             $table->double('quantity');
+            $table->string('discount');
+            $table->string('category')->nullable();
+            $table->string('seller')->nullable();
             $table->timestamps();
         });
     }

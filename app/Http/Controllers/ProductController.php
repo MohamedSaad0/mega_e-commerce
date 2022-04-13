@@ -15,7 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view('admin.product.show');
+        $products = Product::all();
+        return view('admin.product.show',["data" =>$products]);
     }
 
     /**
@@ -37,8 +38,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $product = new Product;
+
+        if ($request->hasFile('image')) {
+            if($product->image){
+                unlink(public_path("images/") . $product->image);
+            }
+            $compliteFileName = $request->file('image')->getClientOriginalName();
+            $filaNameOnly = pathinfo($compliteFileName, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $comPic = str_replace(' ', '_', $filaNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+            // $path = $request->file('image')->storeAs('public/products', $comPic);
+            $path = $request->file('image')->move(public_path("images/"), $comPic);
+            $product->image = $comPic;
+        }
+        $category = $request->category;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->quantity = $request->price;
+        $product->discount = $request->discount;
+        $product->category = $request->category;
+        $product->seller = $request->seller;
+        $product->save();
+
+        if ($product->save()) {
+            return redirect()->route('product.index');
+        } else {
+            return ['status' => false, 'message' => 'Couldnt Save Image'];
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -46,9 +77,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $id)
     {
         //
+        $product = Product::find($id);
+        return view("admin.product.show_product", $product);
     }
 
     /**
@@ -57,9 +90,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Product $product, $id)
     {
         //
+        $product = Product::find($id);
+        return view("admin.product.edit", $product);
     }
 
     /**
@@ -69,9 +104,28 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount = $request->discount;
+        $product->quantity = $request->quantity;
+        $product->category = $request->category;
+        $product->seller = $request->seller;
+        if ($request->hasFile('image')) {
+            $compliteFileName = $request->file('image')->getClientOriginalName();
+            $filaNameOnly = pathinfo($compliteFileName, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $comPic = str_replace(' ', '_', $filaNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+            // $path = $request->file('image')->storeAs('public/products', $comPic);
+            $path = $request->file('image')->move(public_path("images/"), $comPic);
+            $product->image = $comPic;
+        }
+        $product->save();
+        return redirect()->route('product.index');
     }
 
     /**
@@ -80,8 +134,16 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
+        $product = Product::find($id);
+        if($product->image){
+            unlink(public_path("images/") . $product->image);
+        }
+        Product::destroy($id);
+        return redirect("/product/index ")->with("Product has been deleted");
+
+
     }
-}
+    }

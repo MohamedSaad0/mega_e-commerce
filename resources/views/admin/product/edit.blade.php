@@ -51,37 +51,38 @@
                                     </div>
                                 @endif
 
-                                <form method="post" action="{{ route('product.store') }}" autocomplete="off" enctype="multipart/form-data">
+                                <form method="post" action="/product/update/{{$id}}" autocomplete="off" enctype="multipart/form-data">
                                     @csrf
+                                    @method('patch')
 
                                     <div class="form-group">
-                                        <input type="text" name="name"
+                                        <input type="text" name="name" value="{{$name}}"
                                             class="form-control form-control-user" placeholder="Name">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="description"
+                                        <input type="text" name="description" value="{{$description}}"
                                             class="form-control form-control-user" placeholder="Description">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="number" name="price"
+                                            <input type="number" name="price" value="{{$price}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Price">
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="number" name="discount"
+                                            <input type="number" name="discount" value="{{$discount}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Discount">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="number" name="quantity"
+                                            <input type="number" name="quantity" value="{{$quantity}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Quantity">
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="category"
+                                            <input type="text" name="category" value="{{$category}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Category">
                                         </div>
@@ -89,19 +90,18 @@
                                     <div class="form-group row">
 
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="seller"
+                                            <input type="text" name="seller" value="{{$seller}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Seller">
                                         </div>
                                     </div>
-
-
                                     <div class="form-group">
                                         <label for="image">Select Image</label>
-                                        <input type="file" name="image" id="files" class="hidden form-control form-control-user"/>
+                                        <input type="file" name="image" id="files" class="hidden form-control form-control-user"
+                                         value="" />
                                     </div>
                                     <input class="btn btn-primary btn-user btn-block" type="submit"
-                                        value="Submit">
+                                        value="Update">
                                     <hr>
                                 </form>
                                 <hr>

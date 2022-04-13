@@ -23,23 +23,31 @@
                             <th>Description</th>
                             <th>Image</th>
                             <th>Price</th>
+                            <th>Discount</th>
+                            <th>Category</th>
+                            <th>Seller</th>
                             <th>Quantity</th>
                             <th colspan="3" class="text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> @foreach($data as $products)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>System Architect</td>
-                            <td>2011/04/25</td>
-                            <td>2011/04/25</td>
-                            <td>2011/04/25</td>
-                            <td><a href="#" class="btn btn-primary">show</a></td>
-                            <td><a href="#" class="btn btn-warning">edit</a></td>
-                            <td><a href="#" class="btn btn-danger">delete</a></td>
+                            <td>{{$products->id }}</td>
+                            <td>{{$products->name}}</td>
+                            <td>{{$products->description}}</td>
+                            {{-- <td>{{$products->image}}</td> --}}
+                            {{-- <td><img src='{{asset("/storage/$products->image")}}' alt="image"></td> --}}
+                            <td><img src='{{asset("images/$products->image")}}' alt="image" class="img-fluid w-50"></td>
+                            <td>{{$products->price}}</td>
+                            <td>{{$products->discount}}</td>
+                            <td>{{$products->quantity}}</td>
+                            <td>{{$products->category}}</td>
+                            <td>{{$products->seller }}</td>
+                            <td><a href='{{ url("/product/show/$products->id")}}' class="btn btn-primary">show</a></td>
+                            <td><a href='{{ url("/product/edit/$products->id") }}' class="btn btn-warning">edit</a></td>
+                            <td><a href='{{ url("/product/delete/$products->id") }}' class="btn btn-danger">delete</a></td>
                         </tr>
-                    </tbody>
+                    </tbody> @endforeach
                 </table>
             </div>
         </div>
