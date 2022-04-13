@@ -32,7 +32,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
 // logout
 Route::get("/logout", [ApiAuthController::class, "logout"]);
 
-/////////////////////// category ///////////////////////
+/////////////////// category ///////////////////
 // show all category
 Route::get("/category/index", [ApiCategoryController::class, "index"])->name("api.category.index");
 // add new category
@@ -43,6 +43,6 @@ Route::get("/category/show/{id}", [ApiCategoryController::class, "show"])->name(
 Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
 // destroy one category
 Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
-/////////////////////// category ///////////////////////
+/////////////////// category ///////////////////
 
 });
