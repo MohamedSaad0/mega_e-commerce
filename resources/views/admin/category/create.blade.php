@@ -19,11 +19,11 @@
 
                             <div class="form-group">
                                 <input type="text" name="name"
-                                    class="form-control form-control-user" placeholder="Name">
+                                    class="form-control form-control-user" value="{{ old('name') }}" placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <input type="text" name="description"
-                                    class="form-control form-control-user" placeholder="Description">
+                                    class="form-control form-control-user" value="{{ old('description') }}" placeholder="Description">
                             </div>
 
                             <div class="form-group">
