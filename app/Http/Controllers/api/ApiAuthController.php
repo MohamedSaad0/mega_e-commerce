@@ -42,7 +42,7 @@ class ApiAuthController extends Controller
         $token = $user->createToken("token_name")->plainTextToken;
         return response()->json(["data" => $user, "token" => $token, "status" => 200], 200);
     }
-    // loging
+    // login
     public function login(Request $request)
     {
         $data = User::where("email", $request->email)->first();
