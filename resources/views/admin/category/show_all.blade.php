@@ -1,6 +1,6 @@
 <x-layouts-sb-admin>
 
-    <x-slot:title>show all category</x-slot:title>
+    <x-slot:title>show all Products</x-slot:title>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

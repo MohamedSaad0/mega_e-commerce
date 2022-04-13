@@ -45,7 +45,7 @@
             <hr class="sidebar-divider">
 
 
-            <!-- Heading -->
+            <!-- Ctegory -->
             <div class="sidebar-heading">
                 Addons
             </div>
@@ -54,6 +54,17 @@
                 <a class="nav-link" href="{{ route('category.index') }}">
                 <i class="fas fa-folder-open"></i>
                     <span>category</span></a>
+            </li>
+
+             <!-- Product -->
+             <div class="sidebar-heading">
+                Addons
+            </div>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('product.index') }}">
+                <i class="fas fa-folder-open"></i>
+                    <span>Product</span></a>
             </li>
 
             <!-- Divider -->

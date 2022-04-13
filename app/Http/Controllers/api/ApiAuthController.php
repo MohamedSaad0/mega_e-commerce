@@ -42,7 +42,7 @@ class ApiAuthController extends Controller
         $token = $user->createToken("token_name")->plainTextToken;
         return response()->json(["data" => $user, "token" => $token, "status" => 200], 200);
     }
-    // login
+    // loging
     public function login(Request $request)
     {
         $data = User::where("email", $request->email)->first();
@@ -67,7 +67,6 @@ class ApiAuthController extends Controller
         $status = Password::sendResetLink(
             $request->only('email')
         );
-        
         $status === Password::RESET_LINK_SENT
                     ? back()->with(['status' => __($status)])
                     : back()->withErrors(['email' => __($status)]);
