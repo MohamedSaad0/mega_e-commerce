@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{{ $title }}</title>
+    <title>{{ $title ?? "mega" }}</title>
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -17,6 +17,9 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -148,6 +151,23 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+
+                @if(Session::has("success"))
+                <p class="alert alert-success text-center">{{ Session::get("success") }}</p>
+                @elseif(Session::has("danger"))
+                <p class="alert alert-danger text-center">{{ Session::get("danger") }}</p>
+                @endif
+        
+                @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                     <!-- Page Heading -->
 
