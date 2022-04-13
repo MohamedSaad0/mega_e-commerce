@@ -37,6 +37,16 @@
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
 
+                            @if ($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('register') }}" autocomplete="off">
                                 @csrf
 

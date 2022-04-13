@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\ApiAuthController;
+use App\Http\Controllers\api\ApiCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,18 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
 
 // logout
 Route::get("/logout", [ApiAuthController::class, "logout"]);
+
+/////////////////////// category ///////////////////////
+// show all category
+Route::get("/category/index", [ApiCategoryController::class, "index"])->name("api.category.index");
+// add new category
+Route::post("/category/store", [ApiCategoryController::class, "store"])->name("api.category.store");
+// show one category
+Route::get("/category/show/{id}", [ApiCategoryController::class, "show"])->name("api.category.show");
+// update one category
+Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
+// destroy one category
+Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
+/////////////////////// category ///////////////////////
 
 });
