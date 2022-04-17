@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\api\ApiAuthController;
-use App\Http\Controllers\api\ApiCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\ApiAuthController;
+use App\Http\Controllers\api\ProductController;
+use App\Http\Controllers\api\ApiCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,5 @@ Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])-
 /////////////////// category ///////////////////
 
 });
+
+Route::get('product/index',[ProductController::class, 'index']);
