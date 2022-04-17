@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Interfaces\Admin\ProductInterface;
+use App\Http\Controllers\Controller;
+use App\Http\Interfaces\Api\ProductInterface;
 
 class ProductController extends Controller
 {
-    protected $ProductInterface;
+    protected $_ProductInterface;
     public function __construct(ProductInterface $ProductInterface){
-
-        $this->ProductInterface = $ProductInterface;
+        $this->_ProductInterface = $ProductInterface;
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +19,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-         return $this->ProductInterface->index();
+        //
+        return $this->_ProductInterface->index();
     }
 
     /**
@@ -30,7 +30,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return $this->ProductInterface->create();
+        //
+        return $this->_ProductInterface->create();
+
     }
 
     /**
@@ -41,53 +43,47 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->ProductInterface->store($request);
-    }
+        //
+        return $this->_ProductInterface->store($request);
 
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product, $id)
+    public function show($id)
     {
-        return $this->ProductInterface->show($id);
-    }
+        //
+        return $this->_ProductInterface->show($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product, $id)
-    {
-
-        return $this->ProductInterface->edit($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        return $this->ProductInterface->update($request,$id);
+        //
+        return $this->_ProductInterface->update($request, $id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        return $this->ProductInterface->destroy($id);
+        //
+        return $this->_ProductInterface->destroy($id);
+
     }
-    }
+}

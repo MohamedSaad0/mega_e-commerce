@@ -57,6 +57,7 @@ Route::get("/category/index", [CategoryController::class, "index"])->name("categ
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create']);
 
+
 Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
 Route::get('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
 Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('product.show');
@@ -66,3 +67,4 @@ Route::patch('/product/update/{id}', [ProductController::class, 'update']);
 Route::get('/product/store', [ProductController::class, 'store'])->name('product/store');
 
 
+Route::get('/product/store', [ProductController::class, 'store'])->name('product.store');

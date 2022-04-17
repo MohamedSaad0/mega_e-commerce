@@ -35,9 +35,7 @@
                             <td>{{$products->id }}</td>
                             <td>{{$products->name}}</td>
                             <td>{{$products->description}}</td>
-                            {{-- <td>{{$products->image}}</td> --}}
-                            {{-- <td><img src='{{asset("/storage/$products->image")}}' alt="image"></td> --}}
-                            <td><img src='{{asset("images/$products->image")}}' alt="image" class="img-fluid w-50"></td>
+                            <td><img src='{{asset("images/$products->image")}}' alt="image" class="img-fluid w-25 "></td>
                             <td>{{$products->price}}</td>
                             <td>{{$products->discount}}</td>
                             <td>{{$products->quantity}}</td>
