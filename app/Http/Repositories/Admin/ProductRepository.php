@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Repositories\Admin;
-
 use App\Models\Product;
 use App\Http\Interfaces\Admin\ProductInterface;
 
@@ -29,22 +28,10 @@ class ProductRepository implements ProductInterface {
     {
 
         $product = new Product;
-
-        $request->validate([
-            "image" => "image|mimes:png,jpg",
-            "name" => "required|string|min:5|max:20",
-            "description" => "required|string|min:15|max:50",
-            "price" => "required|string",
-            "quantity" => "required|string",
-            "discount" => "required|string",
-            "category" => "required|string",
-            "seller" => "required|string",
-        ]);
-
         if ($request->hasFile('image')) {
-            if($product->image){
-                unlink(public_path("images/") . $product->image);
-            }
+            // if($product->image){
+            //     unlink(public_path("images/") . $product->image);
+            // }
             $compliteFileName = $request->file('image')->getClientOriginalName();
             $filaNameOnly = pathinfo($compliteFileName, PATHINFO_FILENAME);
             $extension = $request->file('image')->getClientOriginalExtension();
@@ -66,7 +53,7 @@ class ProductRepository implements ProductInterface {
         if ($product->save()) {
             return redirect()->route('product.index');
         } else {
-            return ['status' => false, 'message' => 'Couldnt Save Image'];
+            return ["error" => "Couldnt save product"];
         }
     }
 
@@ -105,8 +92,6 @@ class ProductRepository implements ProductInterface {
      */
     public function update($request, $id)
     {
-
-
         $product = Product::find($id);
         $product->name = $request->name;
         $product->description = $request->description;

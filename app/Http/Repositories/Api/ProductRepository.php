@@ -10,15 +10,7 @@ class ProductRepository implements ProductInterface
         return Product::all();
     }
     public function show($id) {
-
-    }
-    public function store($request) {
-
-    }
-    public function update($request, $id) {
-
-    }
-    public function destroy($id){
-
+        $product = Product::find($id);
+        return response()->json($product,201);
     }
 }

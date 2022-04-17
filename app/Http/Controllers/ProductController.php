@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Interfaces\Admin\ProductInterface;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -39,7 +40,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         return $this->ProductInterface->store($request);
     }
@@ -75,7 +76,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         return $this->ProductInterface->update($request,$id);
     }

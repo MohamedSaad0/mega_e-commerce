@@ -158,8 +158,8 @@
                 @elseif(Session::has("danger"))
                 <p class="alert alert-danger text-center">{{ Session::get("danger") }}</p>
                 @endif
-        
-                @if ($errors->any())
+
+                {{-- @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -167,7 +167,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
 
                     <!-- Page Heading -->
 

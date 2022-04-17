@@ -30,22 +30,29 @@ Route::post("/forgot_password", [ApiAuthController::class, "forgot_password"]);
 
 Route::group(["middleware" => ["auth:sanctum"]], function(){
 
-// logout
-Route::get("/logout", [ApiAuthController::class, "logout"]);
+    // logout
+    Route::get("/logout", [ApiAuthController::class, "logout"]);
 
-/////////////////// category ///////////////////
-// show all category
-Route::get("/category/index", [ApiCategoryController::class, "index"])->name("api.category.index");
-// add new category
-Route::post("/category/store", [ApiCategoryController::class, "store"])->name("api.category.store");
-// show one category
-Route::get("/category/show/{id}", [ApiCategoryController::class, "show"])->name("api.category.show");
-// update one category
-Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
-// destroy one category
+    /////////////////// category ///////////////////
+    // show all category
+    Route::get("/category/index", [ApiCategoryController::class, "index"])->name("api.category.index");
+    // add new category
+    Route::post("/category/store", [ApiCategoryController::class, "store"])->name("api.category.store");
+    // show one category
+    Route::get("/category/show/{id}", [ApiCategoryController::class, "show"])->name("api.category.show");
+    // update one category
+    Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
+    // destroy one category
 Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
 /////////////////// category ///////////////////
 
+
+
 });
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//                                         Product                                       //
+///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('product/index',[ProductController::class, 'index']);
+Route::get('product/{id}', [ProductController::class,'show']);
