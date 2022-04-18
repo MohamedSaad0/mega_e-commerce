@@ -40,35 +40,29 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Add Product</h1>
                                 </div>
+                             <span>    @error('name')  {{$message}} @enderror </span>
 
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                             <form method="post" action="{{ route('product.store') }}" autocomplete="off" enctype="multipart/form-data">
+                                @csrf
 
-                                <form method="post" action="{{ route('product.store') }}" autocomplete="off" enctype="multipart/form-data">
-                                    @csrf
-
-                                    <div class="form-group">
-                                        <input type="text" name="name"
-                                            class="form-control form-control-user" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" name="description"
-                                            class="form-control form-control-user" placeholder="Description">
+                                <div class="form-group">
+                                    <input type="text" name="name"
+                                    class="form-control form-control-user" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <span>    @error('description')  {{$message}} @enderror </span>
+                                    <input type="text" name="description"
+                                    class="form-control form-control-user" placeholder="Description">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="number" name="price"
+                                    <span>    @error('price')  {{$message}} @enderror </span>
+                                                <input type="number" name="price"
                                                 class="form-control form-control-user"
                                                 placeholder="Price">
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <span>    @error('discount')  {{$message}} @enderror </span>
                                             <input type="number" name="discount"
                                                 class="form-control form-control-user"
                                                 placeholder="Discount">
@@ -76,27 +70,34 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <span>    @error('quantity')  {{$message}} @enderror </span>
                                             <input type="number" name="quantity"
                                                 class="form-control form-control-user"
                                                 placeholder="Quantity">
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="category"
-                                                class="form-control form-control-user"
-                                                placeholder="Category">
+                                    <span>    @error('category')  {{$message}} @enderror </span>
+                                    <select name="category" class="form-control form-control-user">
+                                        @foreach($category as $cat)
+                                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                        @endforeach
+                                    </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-
                                         <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="text" name="seller"
-                                                class="form-control form-control-user"
-                                                placeholder="Seller">
+                                    <span>    @error('seller')  {{$message}} @enderror </span>
+                                    {{-- <input type="text" name="seller" class="form-control form-control-user" placeholder="Seller"> --}}
+                                    @foreach($seller as $seller)
+                                            <select name="seller" class="form-control form-control-user">
+                                                <option value="{{$seller->id}}">{{$seller->name}}</option>
+                                            </select>
+                                    @endforeach
                                         </div>
                                     </div>
 
-
                                     <div class="form-group">
+                                    <span>    @error('image')  {{$message}} @enderror </span>
                                         <label for="image">Select Image</label>
                                         <input type="file" name="image" id="files" class="hidden form-control form-control-user"/>
                                     </div>

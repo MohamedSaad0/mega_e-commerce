@@ -47,5 +47,6 @@ class ProductRequest extends FormRequest
         'category.required' => 'category is required',
         'seller.required' => 'seller',
         );
+        return $message;
     }
 }

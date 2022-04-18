@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Repositories\Admin;
+use App\Models\Seller;
 use App\Models\Product;
+use App\Models\Category;
 use App\Http\Interfaces\Admin\ProductInterface;
 
 class ProductRepository implements ProductInterface {
@@ -15,7 +17,12 @@ class ProductRepository implements ProductInterface {
     public function create()
     {
         //
-        return view('admin.product.create');
+        // $category = Category::all();
+
+        $category = Category::all();
+        $seller = Seller::all();
+        return view('admin.product.create', compact('category','seller'));
+
     }
 
     /**
@@ -44,6 +51,7 @@ class ProductRepository implements ProductInterface {
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
+
         $product->quantity = $request->price;
         $product->discount = $request->discount;
         $product->category = $request->category;
@@ -67,6 +75,7 @@ class ProductRepository implements ProductInterface {
     {
         //
         $product = Product::find($id);
+        $category = Category::find($id);
         return view("admin.product.show_product", $product);
     }
 

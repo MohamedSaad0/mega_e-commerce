@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -68,3 +69,13 @@ Route::get('/product/store', [ProductController::class, 'store'])->name('product
 
 
 Route::get('/product/store', [ProductController::class, 'store'])->name('product.store');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//                                         Seller                                       //
+///////////////////////////////////////////////////////////////////////////////////////////
+
+Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.index');
+Route::get('/seller/create', [SellerController::class, 'create']);
+Route::post('/seller/store', [SellerController::class, 'store'])->name('seller.store');
+
