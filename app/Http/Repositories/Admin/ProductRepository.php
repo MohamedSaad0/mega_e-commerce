@@ -10,7 +10,9 @@ class ProductRepository implements ProductInterface {
     public function index()
     {
         //
-        $products = Product::all();
+        // $products = Product::all();
+        $products = Product::with('seller:name,id')->get();
+        dd($products);
         return view('admin.product.show',["data" =>$products]);
     }
 
@@ -25,12 +27,6 @@ class ProductRepository implements ProductInterface {
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store($request)
     {
 
@@ -65,12 +61,7 @@ class ProductRepository implements ProductInterface {
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
@@ -79,12 +70,6 @@ class ProductRepository implements ProductInterface {
         return view("admin.product.show_product", $product);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -92,13 +77,6 @@ class ProductRepository implements ProductInterface {
         return view("admin.product.edit", $product);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update($request, $id)
     {
         $product = Product::find($id);
@@ -122,12 +100,6 @@ class ProductRepository implements ProductInterface {
         return redirect()->route('product.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

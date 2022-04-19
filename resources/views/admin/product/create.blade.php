@@ -46,24 +46,24 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <input type="text" name="name"
+                                    <input type="text" name="name" value="{{old('name')}}"
                                     class="form-control form-control-user" placeholder="Name">
                                 </div>
                                 <div class="form-group">
                                     <span>    @error('description')  {{$message}} @enderror </span>
-                                    <input type="text" name="description"
+                                    <input type="text" value="{{old('description')}}" name="description"
                                     class="form-control form-control-user" placeholder="Description">
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                     <span>    @error('price')  {{$message}} @enderror </span>
-                                                <input type="number" name="price"
+                                                <input type="number" name="price" value="{{old('price')}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Price">
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                             <span>    @error('discount')  {{$message}} @enderror </span>
-                                            <input type="number" name="discount"
+                                            <input type="number" name="discount" value="{{old('discount')}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Discount">
                                         </div>
@@ -71,13 +71,13 @@
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                     <span>    @error('quantity')  {{$message}} @enderror </span>
-                                            <input type="number" name="quantity"
+                                            <input type="number" name="quantity" value="{{old('quantity')}}"
                                                 class="form-control form-control-user"
                                                 placeholder="Quantity">
                                         </div>
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                     <span>    @error('category')  {{$message}} @enderror </span>
-                                    <select name="category" class="form-control form-control-user">
+                                    <select name="category" class="form-control form-control-user" value="{{old('category')}}">
                                         @foreach($category as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>
                                         @endforeach
@@ -88,18 +88,18 @@
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                     <span>    @error('seller')  {{$message}} @enderror </span>
                                     {{-- <input type="text" name="seller" class="form-control form-control-user" placeholder="Seller"> --}}
-                                    @foreach($seller as $seller)
-                                            <select name="seller" class="form-control form-control-user">
+                                    <select name="seller" class="form-control form-control-user" value="{{old('seller')}}">
+                                        @foreach($seller as $seller)
                                                 <option value="{{$seller->id}}">{{$seller->name}}</option>
+                                         @endforeach
                                             </select>
-                                    @endforeach
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                     <span>    @error('image')  {{$message}} @enderror </span>
                                         <label for="image">Select Image</label>
-                                        <input type="file" name="image" id="files" class="hidden form-control form-control-user"/>
+                                        <input type="file" name="image" id="files"  value="{{old('image')}}" class="hidden form-control form-control-user"/>
                                     </div>
                                     <input class="btn btn-primary btn-user btn-block" type="submit"
                                         value="Submit">

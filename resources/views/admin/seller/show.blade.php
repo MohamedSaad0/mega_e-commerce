@@ -21,16 +21,16 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th colspan="3" class="text-center">Actions</th>
+                            <th colspan="2" class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody> @foreach($data as $seller)
                         <tr>
                             <td>{{$seller->id }}</td>
                             <td>{{$seller->name}}</td>
-                            <td><a href='{{ url("/product/show/$seller->id")}}' class="btn btn-primary">show</a></td>
-                            <td><a href='{{ url("/product/edit/$seller->id") }}' class="btn btn-warning">edit</a></td>
-                            <td><a href='{{ url("/product/delete/$seller->id") }}' class="btn btn-danger">delete</a></td>
+                            <td>{{$seller->description}}</td>
+                            <td><a href='{{ url("/seller/edit/$seller->id") }}' class="btn btn-warning">edit</a></td>
+                            <td><a href='{{ url("/seller/delete/$seller->id") }}' class="btn btn-danger">delete</a></td>
                         </tr>
                     </tbody> @endforeach
                 </table>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\SellerRequest;
 use App\Http\Interfaces\Admin\SellerInterface;
 
 class SellerController extends Controller
@@ -38,22 +39,11 @@ class SellerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SellerRequest $request)
     {
         //
         return $this->SellerInterface->store($request);
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -64,7 +54,7 @@ class SellerController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $this->SellerInterface->edit($id);
     }
 
     /**
@@ -74,9 +64,9 @@ class SellerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SellerRequest $request, $id)
     {
-        //
+        return $this->SellerInterface->update($request, $id);
     }
 
     /**
@@ -88,5 +78,7 @@ class SellerController extends Controller
     public function destroy($id)
     {
         //
+        return $this->SellerInterface->destroy($id);
+
     }
 }

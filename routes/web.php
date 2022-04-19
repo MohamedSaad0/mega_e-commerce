@@ -18,10 +18,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -46,36 +42,23 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/category/destroy/{id}", [CategoryController::class, "destroy"])->name("category.destroy");
     // category
 });
-
-// category
-Route::get("/category/index", [CategoryController::class, "index"])->name("category.index");
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                                         Product                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
-
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create']);
-
-
 Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
 Route::get('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
 Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::patch('/product/update/{id}', [ProductController::class, 'update']);
-
-Route::get('/product/store', [ProductController::class, 'store'])->name('product/store');
-
-
-Route::get('/product/store', [ProductController::class, 'store'])->name('product.store');
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                                         Seller                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
-
 Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.index');
 Route::get('/seller/create', [SellerController::class, 'create']);
 Route::post('/seller/store', [SellerController::class, 'store'])->name('seller.store');
+Route::get('/seller/delete/{id}', [SellerController::class, 'destroy'])->name('seller.delete');
+Route::get('/seller/edit/{id}', [SellerController::class, 'edit'])->name('seller.edit');
+Route::patch('/seller/update/{id}', [SellerController::class, 'update']);
 

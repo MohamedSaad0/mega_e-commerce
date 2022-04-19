@@ -40,7 +40,9 @@
                             <td>{{$products->discount}}</td>
                             <td>{{$products->quantity}}</td>
                             <td>{{$products->category}}</td>
-                            <td>{{$products->seller }}</td>
+                            {{-- @foreach ($products->seller as $item) --}}
+                            <td>{{$products->seller->name}}</td>
+                            {{-- @endforeach --}}
                             <td><a href='{{ url("/product/show/$products->id")}}' class="btn btn-primary">show</a></td>
                             <td><a href='{{ url("/product/edit/$products->id") }}' class="btn btn-warning">edit</a></td>
                             <td><a href='{{ url("/product/delete/$products->id") }}' class="btn btn-danger">delete</a></td>

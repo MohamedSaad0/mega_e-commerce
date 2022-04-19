@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Interfaces\Admin;
 
-interface ProductInterface {
+Interface ProductInterface {
     public function index();
     public function create();
     public function show($id);
