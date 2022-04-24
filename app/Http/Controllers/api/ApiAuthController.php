@@ -2,27 +2,19 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Password;
+use App\Http\Requests\Auth\RegisterRequest;
+use Illuminate\Validation\ValidationException;
 
 class ApiAuthController extends Controller
 {
     // register
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $request->validate([
-            "name" => "required|string|min:3|max:30",
-            "email" => "required|string|unique:users|email",
-            "password" => "required|string|confirmed",
-            "image" => "image|mimes:png,jpg",
-            "address" => "required|string|min:3|max:80",
-            "phone" => "required|string|digits:11",
-        ]);
-
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

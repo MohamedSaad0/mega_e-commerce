@@ -20,20 +20,23 @@
                             <div class="form-group">
                                 <input type="text" name="name"
                                     class="form-control form-control-user" placeholder="Name">
+                                    @error('name')  {{$message}}  @enderror
                             </div>
                             <div class="form-group">
                                 <input type="text" name="description"
                                     class="form-control form-control-user" placeholder="Description">
+                                    @error('description') {{$message}} @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="files">Select Image</label>
                                 <input type="file" name="image" id="files" class="hidden form-control form-control-user"/>
+                                @error('image') {{$message}} @enderror
                             </div>
                             <input class="btn btn-primary btn-user btn-block" type="submit"
                                 value="add">
                         </form>
-                    
+
                     </div>
                 </div>
             </div>
