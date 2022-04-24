@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\SellerController;
 use App\Http\Controllers\api\ApiAuthController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\ApiCategoryController;
@@ -45,9 +46,6 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
     // destroy one category
 Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
 /////////////////// category ///////////////////
-
-
-
 });
 
 
@@ -56,3 +54,9 @@ Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])-
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('product/index',[ProductController::class, 'index']);
 Route::get('product/{id}', [ProductController::class,'show']);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//                                         Seller                                        //
+///////////////////////////////////////////////////////////////////////////////////////////
+Route::get('seller/index',[SellerController::class, 'index']);
+Route::get('seller_prod/{id}', [SellerController::class,'seller_prod']);

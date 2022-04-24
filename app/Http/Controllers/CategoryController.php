@@ -88,12 +88,6 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request)
     {
-        // //
-        // $request->validate([
-        //     "name" => "required|string|min:3|max:15",
-        //     "description" => "required|string|min:10|max:100",
-        //     "image" => "image|mimes:png,jpg",
-        // ]);
         $category = Category::find($request->id);
 
         if($category)
