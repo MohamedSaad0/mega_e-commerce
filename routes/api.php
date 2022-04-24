@@ -71,6 +71,4 @@ Route::get('product/{id}', [ProductController::class,'show']);
 Route::get('seller/index',[SellerController::class, 'index']);
 Route::get('seller_prod/{id}', [SellerController::class,'seller_prod']);
 
-///////////////////////////////////////////////////////////////////////////////////////////
-//                                         Cart                                          //
-///////////////////////////////////////////////////////////////////////////////////////////
+
