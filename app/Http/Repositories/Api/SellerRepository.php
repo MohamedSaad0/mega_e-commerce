@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Repositories\Api;
+use App\Models\Seller;
 use App\Models\Product;
 use App\Http\Interfaces\Api\SellerInterface;
 
@@ -21,7 +22,7 @@ class SellerRepository implements SellerInterface {
         $seller = Seller::find($id);
         $seller_prod = Product::find($id);
         return $seller->product;
-//        $products = Seller::where('id', $id)->with('products:id,name,description')->get();
+        // $products = Seller::where('id', $id)->with('products:id,name,description')->get();
         // return $products;
         dd($products);
     }

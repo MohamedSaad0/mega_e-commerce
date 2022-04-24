@@ -28,7 +28,6 @@ class ProductRepository implements ProductInterface {
 
     public function store($request)
     {
-
         $product = new Product;
         if ($request->hasFile('image')) {
                 $compliteFileName = $request->file('image')->getClientOriginalName();
