@@ -28,7 +28,7 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($categories as $category)                            
+                        @foreach ($categories as $category)
                         <tr>
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
@@ -40,16 +40,7 @@
                         @endforeach
 
                     </tbody>
-                    <tfoot>
-                        <tr>
-                        <th>id</th>
-                            <th>name</th>
-                            <th>description</th>
-                            <th>show</th>
-                            <th>edit</th>
-                            <th>delete</th>
-                        </tr>
-                    </tfoot>
+                    
                 </table>
             </div>
         </div>

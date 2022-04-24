@@ -25,7 +25,7 @@
                             <th>Price</th>
                             <th>Discount</th>
                             <th>Category</th>
-                            <th>Seller</th>
+
                             <th>Quantity</th>
                             <th colspan="3" class="text-center">Actions</th>
                         </tr>
@@ -38,11 +38,11 @@
                             <td><img src='{{asset("images/$products->image")}}' alt="image" class="img-fluid w-25 "></td>
                             <td>{{$products->price}}</td>
                             <td>{{$products->discount}}</td>
+                            <td>{{$products->category->name}}</td>
                             <td>{{$products->quantity}}</td>
-                            <td>{{$products->category}}</td>
-                            {{-- @foreach ($products->seller as $item) --}}
-                            <td>{{$products->seller->name}}</td>
-                            {{-- @endforeach --}}
+                            @foreach  ($products as $item)
+                                <td>{{$item->seller->name}}</td>
+                            @endforeach
                             <td><a href='{{ url("/product/show/$products->id")}}' class="btn btn-primary">show</a></td>
                             <td><a href='{{ url("/product/edit/$products->id") }}' class="btn btn-warning">edit</a></td>
                             <td><a href='{{ url("/product/delete/$products->id") }}' class="btn btn-danger">delete</a></td>

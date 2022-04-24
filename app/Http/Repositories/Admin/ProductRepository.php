@@ -3,22 +3,21 @@ namespace App\Http\Repositories\Admin;
 use App\Models\Seller;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product_Seller;
 use App\Http\Interfaces\Admin\ProductInterface;
 
 class ProductRepository implements ProductInterface {
 
     public function index()
     {
-        //
         // $products = Product::all();
         $products = Product::with('seller:name,id')->get();
-        dd($products);
+        // dd($products);
         return view('admin.product.show',["data" =>$products]);
     }
 
     public function create()
     {
-        //
         // $category = Category::all();
 
         $category = Category::all();
@@ -32,33 +31,33 @@ class ProductRepository implements ProductInterface {
 
         $product = new Product;
         if ($request->hasFile('image')) {
-            // if($product->image){
-            //     unlink(public_path("images/") . $product->image);
-            // }
-            $compliteFileName = $request->file('image')->getClientOriginalName();
-            $filaNameOnly = pathinfo($compliteFileName, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $comPic = str_replace(' ', '_', $filaNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
-            // $path = $request->file('image')->storeAs('public/products', $comPic);
-            $path = $request->file('image')->move(public_path("images/"), $comPic);
-            $product->image = $comPic;
-        }
-        $category = $request->category;
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
+                $compliteFileName = $request->file('image')->getClientOriginalName();
+                $filaNameOnly = pathinfo($compliteFileName, PATHINFO_FILENAME);
+                $extension = $request->file('image')->getClientOriginalExtension();
+                $comPic = str_replace(' ', '_', $filaNameOnly) . '-' . rand() . '_' . time() . '.' . $extension;
+                $path = $request->file('image')->move(public_path("images/"), $comPic);
+                $product->image = $comPic;
+            }
+            $product->category_id = $request->category_id;
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $product->quantity = $request->price;
+            $product->discount = $request->discount;
+            $product->save();
 
-        $product->quantity = $request->price;
-        $product->discount = $request->discount;
-        $product->category = $request->category;
-        $product->seller = $request->seller;
-        $product->save();
+            $prod_seller = new Product_Seller();
+            $prod_id=Product::latest()->first()->id;
+            $prod_seller->product_id = $prod_id;
+            $prod_seller->seller_id = $request->seller_id;
+            $prod_seller->save();
 
-        if ($product->save()) {
-            return redirect()->route('product.index');
-        } else {
-            return ["error" => "Couldnt save product"];
-        }
+            if ($prod_seller->save()) {
+                return redirect()->route('product.index');
+            } else {
+                return ["error" => "Couldnt save product"];
+            }
+
     }
 
 
@@ -102,7 +101,6 @@ class ProductRepository implements ProductInterface {
 
     public function destroy($id)
     {
-        //
 
         $product = Product::find($id);
         if($product->image){

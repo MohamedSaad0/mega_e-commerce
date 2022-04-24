@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\SellerController;
 use App\Http\Controllers\api\ApiAuthController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\ApiCategoryController;
@@ -47,12 +48,16 @@ Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])-
 /////////////////// category ///////////////////
 
 
-
 });
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                                         Product                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('product/index',[ProductController::class, 'index']);
 Route::get('product/{id}', [ProductController::class,'show']);
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//                                         Seller                                        //
+///////////////////////////////////////////////////////////////////////////////////////////
+Route::get('seller/index', [SellerController::class, 'index']);
+Route::get('seller/products/{id}', [SellerController::class, 'prod_seller']);

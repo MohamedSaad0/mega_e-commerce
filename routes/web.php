@@ -33,7 +33,7 @@ Route::get("/forgot-password", [PasswordResetLinkController::class, "create"])->
 
 Route::get("/category/create", [CategoryController::class, "create"])->name("category.create");
 Route::post("/category/store", [CategoryController::class, "store"])->name("category.store");
-Route::middleware(["auth"])->group(function () {
+// Route::middleware(["auth"])->group(function () {
     // category
     Route::get("/category/index", [CategoryController::class, "index"])->name("category.index");
     Route::get("/category/show/{id}", [CategoryController::class, "show"])->name("category.show");
@@ -41,7 +41,7 @@ Route::middleware(["auth"])->group(function () {
     Route::post("/category/update", [CategoryController::class, "update"])->name("category.update");
     Route::get("/category/destroy/{id}", [CategoryController::class, "destroy"])->name("category.destroy");
     // category
-});
+// });
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                                         Product                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -61,4 +61,3 @@ Route::post('/seller/store', [SellerController::class, 'store'])->name('seller.s
 Route::get('/seller/delete/{id}', [SellerController::class, 'destroy'])->name('seller.delete');
 Route::get('/seller/edit/{id}', [SellerController::class, 'edit'])->name('seller.edit');
 Route::patch('/seller/update/{id}', [SellerController::class, 'update']);
-
