@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\Interfaces\Api;
 
-interface SellerInterface {
+Interface SellerInterface
+{
     public function index();
-    // public function prod_seller($id);
+    public function seller_prod($id);
 }

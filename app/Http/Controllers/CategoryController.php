@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -36,14 +37,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
-        $request->validate([
-            "name" => "required",
-            "description" => "required",
-            "image" => "required",
-        ]);
         $category = new Category();
         $category->name = $request->name;
         $category->description = $request->description;
@@ -91,14 +86,8 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(CategoryRequest $request)
     {
-        //
-        $request->validate([
-            "name" => "required|string|min:3|max:15",
-            "description" => "required|string|min:10|max:100",     
-            "image" => "image|mimes:png,jpg",
-        ]);
         $category = Category::find($request->id);
 
         if($category)
