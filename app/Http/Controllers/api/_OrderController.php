@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\ProductRequest;
-use App\Http\Interfaces\Api\ProductInterface;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
-    protected $_ProductInterface;
-    public function __construct(ProductInterface $ProductInterface){
-        $this->_ProductInterface = $ProductInterface;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +16,6 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return $this->_ProductInterface->index();
     }
 
     /**
@@ -33,8 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
-        return $this->_ProductInterface->create();
+
     }
 
     /**
@@ -43,11 +34,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         //
-        return $this->_ProductInterface->store($request);
-
+        $order = Order::create([
+            'user_id' => $request->user()->id
+        ]);
     }
 
     /**
@@ -59,8 +51,17 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-        return $this->_ProductInterface->show($id);
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -70,10 +71,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
-        return $this->_ProductInterface->update($request, $id);
     }
 
     /**
@@ -85,7 +85,5 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
-        return $this->_ProductInterface->destroy($id);
-
     }
 }

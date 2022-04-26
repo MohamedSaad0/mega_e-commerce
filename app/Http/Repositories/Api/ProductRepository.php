@@ -3,9 +3,10 @@ namespace App\Http\Repositories\Api;
 
 use App\Models\Product;
 use App\Http\Interfaces\Api\ProductInterface;
+use Illuminate\Support\Facades\Auth;
 
-class ProductRepository implements ProductInterface
-{
+class ProductRepository implements ProductInterface{
+
     public function index() {
         return Product::all();
     }

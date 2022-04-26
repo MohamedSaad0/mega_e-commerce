@@ -19,16 +19,14 @@ use App\Http\Controllers\api\ApiCategoryController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-
-});
-
+// register
 Route::post("/register", [ApiAuthController::class, "register"]);
 // login
 Route::post("/login", [ApiAuthController::class, "login"]);
-// register
 // forgot_password
 Route::post("/forgot_password", [ApiAuthController::class, "forgot_password"]);
 

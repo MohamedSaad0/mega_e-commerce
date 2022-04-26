@@ -59,10 +59,9 @@ class ProductRepository implements ProductInterface {
 
     }
 
-
     public function show($id)
     {
-        //
+
         $product = Product::find($id);
         $category = Category::find($id);
         return view("admin.product.show_product", $product);
@@ -70,7 +69,6 @@ class ProductRepository implements ProductInterface {
 
     public function edit($id)
     {
-        //
         $product = Product::find($id);
         return view("admin.product.edit", $product);
     }
@@ -100,7 +98,6 @@ class ProductRepository implements ProductInterface {
 
     public function destroy($id)
     {
-
         $product = Product::find($id);
         if($product->image){
             unlink(public_path("images/") . $product->image);

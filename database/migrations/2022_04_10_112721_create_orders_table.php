@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('total_price');
-            $table->enum('status', ['Pending', 'Shipped', 'Delivered'])->default("Pending");
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('cart_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('total_price');
+            $table->enum('status', ['Pending', 'Shipped', 'Delivered'])->default("Pending");
             $table->timestamps();
         });
     }

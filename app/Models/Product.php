@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Seller;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +26,7 @@ class Product extends Model
     ];
 
     public function category() {
-       
+
         return $this->belongsTo(Category::class,'category_id');
     }
     public function cart() {
@@ -34,5 +35,9 @@ class Product extends Model
 
     public function seller() {
         return $this->belongsToMany(Seller::class);
+    }
+
+    public function order(){
+        return $this->belongsToMany(Order::class);
     }
 }

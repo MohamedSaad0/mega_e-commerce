@@ -12,42 +12,24 @@ use App\Http\Interfaces\Api\CartInterface;
 
 class CartController extends Controller
 {
-    protected $CartInterface;
-    public function __consruct(CartInterface $CartInterface) {
-        $this->CartInterface = $CartInterface;
+    protected $_CartInterface;
+    public function __construct(CartInterface $CartInterface) {
+        $this->_CartInterface = $CartInterface;
     }
     public function addToCart(Request $request){
 
-        return $this->CartInterface->addToCart($request);
+        return $this->_CartInterface->addToCart($request);
       }
 
       public function update (Request $request){
 
-          $cart = Cart::where([['user_id',Auth::user()->id],['product_id',$request->product_id]])->first();
-          if($cart){
-              $cart->update([
-                'quantity'=>$request->quantity,
-                'total_price'=>$request->total_price,
-              ]);
-          return response()->json(["data"=>$cart, "Message" => "Updated successfull"]);
-
-          }
-          return response()->json(["Message" => "Cart not found"]);
-
+        return $this->_CartInterface->update($request);
       }
       public function userCart($id){
-          $cart = Cart::with('products')->where('user_id', $id)->first();
-          //   $cart= (Cart::with('product:id,name,price,image,description')->where('user_id',Auth::user()->id)->select('product_id','total_price','quantity')->get());
-          //   return response()->json(["Data"=>"$cart","Message" => "Successs"]);
+        return $this->_CartInterface->userCart($id);
         }
-
         public function delete (Request $request){
+        return $this->_CartInterface->delete($request);
 
-            $cart = Cart::where([['user_id',Auth::user()->id],['product_id',$request->product_id]])->first();
-                if(is_null($cart)){
-                  return response()->json(["Message" => "Cart not found"]);
-              }
-                $cart->delete();
-                return response()->json(["Message" => "Deleted successfully"]);
         }
     }
