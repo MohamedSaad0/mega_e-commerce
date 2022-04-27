@@ -27,11 +27,11 @@ class User extends Authenticatable
         'phone',
     ];
 
-    public function cart() {
+    public function carts() {
         return $this->hasOne(Cart::class);
     }
 
-    public function order() {
+    public function orders() {
         return $this->hasMany(Order::class);
     }
 

@@ -13,20 +13,19 @@ class Cart extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'product_id',
         'quantity',
         'total_price',
     ];
 
     // public $table = 'Product_Seller';
-    public function user(){
+    public function users(){
         return $this->belongsTo(User::class);
     }
 
-    public function order() {
+    public function orders() {
         return $this->hasOne(Order::class);
     }
-    public function product() {
-        return $this->belongsToMany(Product::class);
+    public function products() {
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
 }

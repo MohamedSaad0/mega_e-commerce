@@ -38,10 +38,10 @@
                             <td><img src='{{asset("images/$products->image")}}' alt="image" class="img-fluid w-25 "></td>
                             <td>{{$products->price}}</td>
                             <td>{{$products->discount}}</td>
-                            <td>{{$products->category->name}}</td>
+                            <td>{{$products->categories->name}}</td>
                             <td>{{$products->quantity}}</td>
-                            @foreach  ($products as $item)
-                                <td>{{$item->seller->name}}</td>
+                            @foreach($products->sellers as $seller)
+                                     <td>{{$seller->name}}</td>
                             @endforeach
                             <td><a href='{{ url("/product/show/$products->id")}}' class="btn btn-primary">show</a></td>
                             <td><a href='{{ url("/product/edit/$products->id") }}' class="btn btn-warning">edit</a></td>

@@ -10,8 +10,8 @@ class ProductRepository implements ProductInterface {
 
     public function index()
     {
-        // $products = Product::all();
-        $products = Product::with('seller:name,id')->get();
+        $products = Product::all();
+        $products = Product::with('sellers:name,id')->get();
         // dd($products);
         return view('admin.product.show',["data" =>$products]);
     }

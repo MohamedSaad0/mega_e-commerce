@@ -16,11 +16,7 @@ class Seller extends Model
         'description',
     ];
     public $table = 'sellers';
-    public function product() {
-        return $this->belongsToMany(Product::class, 'product_id');
-    }
-
-    public function product_seller() {
-        return $this->belongsTo(Product_Seller::class);
+    public function products() {
+        return $this->belongsToMany(Product::class);
     }
 }

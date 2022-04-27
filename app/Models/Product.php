@@ -25,19 +25,19 @@ class Product extends Model
 
     ];
 
-    public function category() {
+    public function categories() {
 
         return $this->belongsTo(Category::class,'category_id');
     }
-    public function cart() {
-        return $this->hasOne(Cart::class);
+    public function carts() {
+        return $this->belongsToMany(Cart::class);
     }
 
-    public function seller() {
+    public function sellers() {
         return $this->belongsToMany(Seller::class);
     }
 
-    public function order(){
+    public function orders(){
         return $this->belongsToMany(Order::class);
     }
 }

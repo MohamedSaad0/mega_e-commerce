@@ -12,15 +12,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Order extends Model
 {
     use HasFactory;
-    public function user() {
+    public function users() {
         return $this->hasOne(User::class);
     }
 
-    public function cart(){
+    public function carts(){
         return $this->belongsTo(Cart::class);
     }
 
-    public function product() {
+    public function products() {
         return $this->belongsToMany(Product::class);
     }
 
