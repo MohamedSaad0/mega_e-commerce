@@ -73,7 +73,7 @@ class CartRepository implements CartInterface
   {
     $cart = Cart::with('products')->where('user_id', Auth::user()->id)->get();
 
-    dd($cart);
+    // dd($cart);
     return $cart;
   }
 
