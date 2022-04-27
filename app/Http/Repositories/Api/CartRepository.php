@@ -16,47 +16,45 @@ class CartRepository implements CartInterface
     $total_cost = 0;
     $cart = Cart::where([['user_id', Auth::user()->id]])->first();
     if ($cart) {
-
-      foreach ($request->products as $product) {
-        $selectedProduct = Product::where('id', $product['id'])->first();
-        if ($selectedProduct) {
-          $count = $request->quantity;
-          $total_cost += $selectedProduct->price * $count;
-
-          $cart->products()->attach($selectedProduct->id);
+        // dd($request);
+        foreach ((array)$request->products as $product) {
+            $selectedProduct = Product::where('id', $product['id'])->first();
+            if ($selectedProduct) {
+                $count = $request->quantity;
+                $total_cost += $selectedProduct->price * $count;
+                $cart->quantity = $request->quantity;
+                $cart->products()->attach($selectedProduct->id);
+            }
         }
-      }
-      $cart->update([
-        'quantity' => $request->quantity,
-        'total_price' => $total_cost
-      ]);
+        $cart->update([
+            'quantity' => $request->quantity,
+            'total_price' => $total_cost
+        ]);
+        return response()->json(["data" => $cart, "Message" => "Cart updated"]);
+
+
     } else {
       $cart = new Cart();
       $cart->user_id = Auth::user()->id;
       $cart->quantity = $request->quantity;
-
-      foreach ($request->products as $product) {
-        $selectedProduct = Product::where('id', $product['id'])->first();
-        if ($selectedProduct) {
-          $count = $request->quantity;
-          $total_cost += $selectedProduct->price * $count;
-
-          $cart->products()->attach($selectedProduct->id);
+      foreach((array)$request->products as $product) {
+          $selectedProduct = Product::where('id', $product['id'])->first();
+          if ($selectedProduct) {
+              $count = $request->quantity;
+              //$count = $product['quantity'];
+              $total_cost += $selectedProduct->price * $count;
+                }
+              $cart->products()->attach($selectedProduct->id);
         }
-      }
-      $cart->total_price = $total_cost;
-      $cart->save();
+        $cart->total_price = $total_cost;
+        $cart->save();
 
-    //   //Third table
-    //   $cart_prod = new Cart_Product();
-    //   $cart_prod->product_id = $request->product_id;
-    //   $cart_prod->cart_id = $request->cart_id;
-    //   $cart_prod->save();
-    // }
+    // return Cart::where('id', $cart->id)->with('products')->first();
 
     return response()->json(["data" => $cart, "Message" => "added to cart"]);
   }
-  }
+}
+
   public function update($request)
   {
 
@@ -71,9 +69,12 @@ class CartRepository implements CartInterface
     return response()->json(["Message" => "Cart not found"]);
   }
 
-  public function userCart($id)
+  public function userCart()
   {
-    $cart = Cart::with('products')->where('user_id', $id)->first();
+    $cart = Cart::with('products')->where('user_id', Auth::user()->id)->get();
+
+    dd($cart);
+    return $cart;
   }
 
   public function delete($request)

@@ -10,6 +10,7 @@ class Cart_Product extends Model
     use HasFactory;
     protected $fillabe = [
         'product_id',
+        'cart_id'
     ];
 
     public $table = 'Cart_Product';

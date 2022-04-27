@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -24,7 +25,6 @@ class ProductSeeder extends Seeder
                 'discount' => 10,
                 'category_id' => 1,
                 'quantity' => 50
-
             ],
                 ['name' => 't-shirt',
                 'image' => 'feature_prod_01.jpg',
@@ -33,7 +33,6 @@ class ProductSeeder extends Seeder
                 'discount' => 15,
                 'category_id' => 2,
                 'quantity' => 50
-
             ],
                 ['name' => 'hat',
                 'image' => 'feature_prod_01.jpg',
@@ -42,16 +41,14 @@ class ProductSeeder extends Seeder
                 'discount' => 20,
                 'category_id' => 3,
                 'quantity' => 50
-
             ],
                 ['name' => 'trendi',
                 'image' => 'feature_prod_02.jpg',
                 'description' =>Str::random(10),
                 'price' => 150,
-                'discount' => null,
+                'discount' => 50,
                 'category_id' => 4,
                 'quantity' => 50
-
             ],
                 ['name' => 'elegent',
                 'image' =>'feature_prod_02.jpg',
@@ -66,26 +63,24 @@ class ProductSeeder extends Seeder
                 'image' => 'feature_prod_03.jpg',
                 'description' =>Str::random(10),
                 'price' => 100,
-                'discount' => null,
-                'category_id' => 6,
+                'discount' => 30,
+                'category_id' => 2,
                 'quantity' => 50
-
             ],
                 ['name' => 'funky',
                 'image' => 'feature_prod_03.jpg',
                 'description' =>Str::random(10),
                 'price' => 300,
                 'discount' => 30,
-                'category_id' => 7,
+                'category_id' => 1,
                 'quantity' => 50
-
             ],
                 ['name' => 'trade',
                 'image' => 'feature_prod_03.jpg',
                 'description' =>Str::random(10),
                 'price' => 300,
                 'discount' => 30,
-                'category_id' => 8,
+                'category_id' => 4,
                 'quantity' => 50
 
             ],
@@ -94,7 +89,7 @@ class ProductSeeder extends Seeder
                 'description' =>Str::random(10),
                 'price' => 300,
                 'discount' => 30,
-                'category_id' => 9,
+                'category_id' => 5,
                 'quantity' => 50
 
             ],
@@ -102,10 +97,9 @@ class ProductSeeder extends Seeder
                 'image' => 'feature_prod_03.jpg',
                 'description' =>Str::random(10),
                 'price' => 300,
-                'discount' => null,
-                'category_id' => 10,
+                'discount' => 30,
+                'category_id' => 1,
                 'quantity' => 50
-
             ],
             ];
 

@@ -18,14 +18,14 @@ class SellerSeeder extends Seeder
         $sellers =
         [
         ['name' => 'men',
-        'description ' => 'description'
+        'description' => 'description'
         ],
         ['name' => 'men',
-        'description ' => 'description'
+        'description' => 'description'
         ],['name' => 'men',
-    '   description ' => 'description'
+    '   description' => 'description'
         ],['name' => 'men',
-        'description ' => 'description'
+        'description' => 'description'
         ]
 ];
 

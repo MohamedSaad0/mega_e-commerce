@@ -22,7 +22,6 @@ class Product extends Model
         'image',
         'discount',
         'category_id',
-
     ];
 
     public function categories() {

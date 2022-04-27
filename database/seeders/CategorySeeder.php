@@ -15,21 +15,36 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
+        DB::table('categories')->insert(
         $categories = [
-            ['name' => 'men',
-            'description ' => 'description',
-            'image' => 'image.png'],
-            ['name' => 'women', 'description ' => 'description',
-            'image' => 'image.png'],
-            ['name' => 'kids', 'description ' => 'description',
-            'image' => 'image.png'],
-            ['name' => 'jeans', 'description ' => 'description',
-            'image' => 'image.png'],
-            ['name' => 'dress', 'description ' => 'description',
-            'image' => 'image.png'],
+            [
+                'name' => 'men',
+                'description' => 'descriptionHOHO',
+                'image' => 'image.png'
+            ],
+            [
+                'name' => 'women',
+                'description' => 'descriptionHOHO',
+                'image' => 'image.png'
+            ],
+            [
+                'name' => 'kids',
+                'description' => 'descriptionHOHO',
+                'image' => 'image.png'
+            ],
+            [
+                'name' => 'jeans',
+                'description' => 'descriptionHOHO',
+                'image' => 'image.png'
+            ],
+            [
+                'name' => 'dress',
+                'description' => 'descriptionHOHO',
+                'image' => 'image.png'
+            ]
 
-        ];
+        ]);
 
-        DB::table('categories')->insert($categories);
+
     }
 }

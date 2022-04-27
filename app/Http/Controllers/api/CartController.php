@@ -25,11 +25,10 @@ class CartController extends Controller
 
         return $this->_CartInterface->update($request);
       }
-      public function userCart($id){
-        return $this->_CartInterface->userCart($id);
+      public function userCart(){
+        return $this->_CartInterface->userCart();
         }
         public function delete (Request $request){
         return $this->_CartInterface->delete($request);
-
         }
     }
