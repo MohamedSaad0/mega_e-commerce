@@ -49,15 +49,15 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
     /////////////////// category ///////////////////
     // show all category
     Route::get("/category/index", [ApiCategoryController::class, "index"])->name("api.category.index");
-    // add new category
-    Route::post("/category/store", [ApiCategoryController::class, "store"])->name("api.category.store");
+    // // add new category
+    // Route::post("/category/store", [ApiCategoryController::class, "store"])->name("api.category.store");
     // show one category
     // send related products to the category
     Route::get("/category/show/{id}", [ApiCategoryController::class, "show"])->name("api.category.show");
     // update one category
-    Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
+    // Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
     // destroy one category
-    Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
+    // Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
 /////////////////// category ///////////////////
 });
 

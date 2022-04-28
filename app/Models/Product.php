@@ -25,7 +25,6 @@ class Product extends Model
     ];
 
     public function categories() {
-
         return $this->belongsTo(Category::class,'category_id');
     }
     public function carts() {
@@ -35,7 +34,7 @@ class Product extends Model
     public function sellers() {
         return $this->belongsToMany(Seller::class);
     }
-
+    
     public function orders(){
         return $this->belongsToMany(Order::class);
     }
