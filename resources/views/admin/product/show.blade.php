@@ -25,8 +25,8 @@
                             <th>Price</th>
                             <th>Discount</th>
                             <th>Category</th>
-
                             <th>Quantity</th>
+                            <th>Seller</th>
                             <th colspan="3" class="text-center">Actions</th>
                         </tr>
                     </thead>

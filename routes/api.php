@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\CartController;
+use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\api\SellerController;
 use App\Http\Controllers\api\ApiAuthController;
 use App\Http\Controllers\api\ProductController;
@@ -42,6 +43,8 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
     Route::post('cart/delete/{id}', [CartController::class, 'delete']);
     // user cart
     Route::get('cart/view', [CartController::class, 'userCart']);
+    // Order Checkout
+    Route::post('orders/checkout', [OrderController::class, 'checkout']);
 
     /////////////////// category ///////////////////
     // show all category
@@ -59,15 +62,17 @@ Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])-
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-//                                         Product                                       //
+//                                        Products                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('product/index',[ProductController::class, 'index']);
 Route::get('product/{id}', [ProductController::class,'show']);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-//                                         Seller                                        //
+//                                        Sellers                                        //
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('seller/index',[SellerController::class, 'index']);
 Route::get('seller_prod/{id}', [SellerController::class,'seller_prod']);
-
+///////////////////////////////////////////////////////////////////////////////////////////
+//                                         Orders                                        //
+///////////////////////////////////////////////////////////////////////////////////////////
 
