@@ -39,7 +39,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
     //update cart
     Route::post('cart/update', [CartController::class, 'update']);
     //delete cart
-    Route::post('cart/delete/{id}', [CartController::class, 'delete']);
+    Route::get('cart/delete', [CartController::class, 'destroy']);
     // user cart
     Route::get('cart/view', [CartController::class, 'userCart']);
 
@@ -54,7 +54,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
     // update one category
     Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
     // destroy one category
-Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
+    Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
 /////////////////// category ///////////////////
 });
 

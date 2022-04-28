@@ -15,8 +15,8 @@ class CartRepository implements CartInterface
   {
     $total_cost = 0;
     $cart = Cart::where([['user_id', Auth::user()->id]])->first();
+
     if ($cart) {
-        // dd($request);
         foreach ((array)$request->products as $product) {
             $selectedProduct = Product::where('id', $product['id'])->first();
             if ($selectedProduct) {
@@ -37,11 +37,11 @@ class CartRepository implements CartInterface
       $cart = new Cart();
       $cart->user_id = Auth::user()->id;
       $cart->quantity = $request->quantity;
+
       foreach((array)$request->products as $product) {
           $selectedProduct = Product::where('id', $product['id'])->first();
           if ($selectedProduct) {
               $count = $request->quantity;
-              //$count = $product['quantity'];
               $total_cost += $selectedProduct->price * $count;
                 }
               $cart->products()->attach($selectedProduct->id);
@@ -57,7 +57,6 @@ class CartRepository implements CartInterface
 
   public function update($request)
   {
-
     $cart = Cart::where([['user_id', Auth::user()->id], ['product_id', $request->product_id]])->first();
     if ($cart) {
       $cart->update([
@@ -72,19 +71,23 @@ class CartRepository implements CartInterface
   public function userCart()
   {
     $cart = Cart::with('products')->where('user_id', Auth::user()->id)->get();
-
-    // dd($cart);
-    return $cart;
+    return response()->json(["data" => $cart, "Message" => "Success"]);
   }
 
-  public function delete($request)
+  public function destroy($request)
   {
+    // $cart = Cart::where([['user_id', Auth::user()->id], ['product_id', $request->product_id]])->get();
+    // if (is_null($cart)) {
+    //   return response()->json(["Message" => "Cart not found"]);
+    // }
+    // $cart->destroy();
+    // return response()->json(["Message" => "Deleted successfully"]);
+     $cart=  Cart::where('user_id', Auth::user()->id)->delete();
+    //  if(is_null($cart)){
+    //     return response()->json(["Message" => "Cart not found"]);
+    //  }
+    //      $cart->destroy();
+        return response()->json(["Message" => "Deleted Successfully"]);
 
-    $cart = Cart::where([['user_id', Auth::user()->id], ['product_id', $request->product_id]])->first();
-    if (is_null($cart)) {
-      return response()->json(["Message" => "Cart not found"]);
-    }
-    $cart->delete();
-    return response()->json(["Message" => "Deleted successfully"]);
-  }
+}
 }
