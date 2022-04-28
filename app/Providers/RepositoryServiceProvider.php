@@ -19,6 +19,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Http\Interfaces\Admin\SellerInterface','App\Http\Repositories\Admin\SellerRepository');
         $this->app->bind('App\Http\Interfaces\Api\SellerInterface','App\Http\Repositories\Api\SellerRepository');
         $this->app->bind('App\Http\Interfaces\Api\CartInterface','App\Http\Repositories\Api\CartRepository');
+        $this->app->bind('App\Http\Interfaces\Admin\OrderInterface','App\Http\Repositories\Admin\OrderRepository');
+
     }
 
     /**

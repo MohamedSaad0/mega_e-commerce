@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Interfaces\Admin\OrderInterface;
 
 class OrderController extends Controller
 {
+    protected $_OrderInterface;
+    public function __construct(OrderInterface $OrderInterface){
+        $this->_OrderInterface = $OrderInterface;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('order.show',compact('orders'));
+        return $this->_OrderInterface->index();
     }
     /**
      * Display the specified resource.

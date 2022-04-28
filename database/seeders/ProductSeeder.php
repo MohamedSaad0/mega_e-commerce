@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
                 'image' => 'feature_prod_01.jpg',
                 'discount' => 10,
                 'category_id' => 1,
-                'quantity' => 50
+                'quantity' => 50,
             ],
                 ['name' => 't-shirt',
                 'image' => 'feature_prod_01.jpg',

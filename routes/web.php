@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
@@ -43,7 +44,7 @@ Route::post("/category/store", [CategoryController::class, "store"])->name("cate
     // category
 // });
 ///////////////////////////////////////////////////////////////////////////////////////////
-//                                         Product                                       //
+//                                         Products                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product/create', [ProductController::class, 'create']);
@@ -53,7 +54,7 @@ Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('prod
 Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::patch('/product/update/{id}', [ProductController::class, 'update']);
 ///////////////////////////////////////////////////////////////////////////////////////////
-//                                         Seller                                       //
+//                                         Sellers                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('/seller/index', [SellerController::class, 'index'])->name('seller.index');
 Route::get('/seller/create', [SellerController::class, 'create']);
@@ -61,3 +62,7 @@ Route::post('/seller/store', [SellerController::class, 'store'])->name('seller.s
 Route::get('/seller/delete/{id}', [SellerController::class, 'destroy'])->name('seller.delete');
 Route::get('/seller/edit/{id}', [SellerController::class, 'edit'])->name('seller.edit');
 Route::patch('/seller/update/{id}', [SellerController::class, 'update']);
+///////////////////////////////////////////////////////////////////////////////////////////
+//                                         Orders                                         //
+///////////////////////////////////////////////////////////////////////////////////////////
+Route::get('orders/index', [OrderController::class, 'index'])->name('order.index');
