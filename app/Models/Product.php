@@ -27,14 +27,14 @@ class Product extends Model
     public function categories() {
         return $this->belongsTo(Category::class,'category_id');
     }
-    public function carts() {
-        return $this->belongsToMany(Cart::class);
-    }
+    // public function carts() {
+    //     return $this->belongsTo(Cart::class);
+    // }
 
     public function sellers() {
         return $this->belongsToMany(Seller::class);
     }
-    
+
     public function orders(){
         return $this->belongsToMany(Order::class);
     }

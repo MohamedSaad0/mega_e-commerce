@@ -15,6 +15,7 @@ class Cart extends Model
         'user_id',
         'quantity',
         'total_price',
+        'product_id'
     ];
 
     // public $table = 'Product_Seller';
@@ -26,6 +27,6 @@ class Cart extends Model
         return $this->hasOne(Order::class);
     }
     public function products() {
-        return $this->belongsToMany(Product::class, 'cart_product');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }
