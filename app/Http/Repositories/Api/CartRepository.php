@@ -15,8 +15,9 @@ class CartRepository implements CartInterface
 
   public function addToCart($request)
   {
+    // $cart = Cart::where([['product_id', $request->product_id], ['user_id', Auth::user()->id]])->first();
     $cart = Cart::where([['product_id', $request->product_id], ['user_id', Auth::user()->id]])->first();
-    dd($cart);
+
     if ($cart) {
         $cart->update([
             'quantity' => $request->quantity
@@ -26,18 +27,21 @@ class CartRepository implements CartInterface
             'user_id' => Auth::user()->id,
             'product_id' => $request->product_id,
             'quantity' => $request->quantity,
-            'total_price' => 500
         ]);
     }
     return response()->json(["data" => $cart, "Message" => "Updated successfull"]);
 }
 
-
   public function userCart()
   {
-      $cart = cartResource::collection(Cart::with('products:id,name,price,image,description')->where('user_id', Auth::user()->id)->select('product_id', 'quantity', 'id', 'total_price')->get());
+    $cart = cartResource::collection(Cart::with('products:id,name,price,image,description')->where('user_id', Auth::user()->id)->select('product_id', 'quantity','id')->get());
+    // dd($cart);
+    if(is_null($cart)){
 
+        return response()->json([ "Message" => "No cart available"]);
+    }
     return response()->json(["data" => $cart, "Message" => "Success"]);
+
   }
 
 

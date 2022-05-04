@@ -20,6 +20,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Http\Interfaces\Api\SellerInterface','App\Http\Repositories\Api\SellerRepository');
         $this->app->bind('App\Http\Interfaces\Api\CartInterface','App\Http\Repositories\Api\CartRepository');
         $this->app->bind('App\Http\Interfaces\Admin\OrderInterface','App\Http\Repositories\Admin\OrderRepository');
+        $this->app->bind('App\Http\Interfaces\Api\CategoryInterface','App\Http\Repositories\Api\CategoryRepository');
+        $this->app->bind('App\Http\Interfaces\Api\OrderInterface','App\Http\Repositories\Api\OrderRepository');
+
 
     }
 

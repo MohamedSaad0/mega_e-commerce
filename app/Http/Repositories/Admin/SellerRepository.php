@@ -16,7 +16,7 @@ class SellerRepository implements SellerInterface {
 
     public function create()
     {
-        //
+        
         return view('admin.seller.create');
     }
 

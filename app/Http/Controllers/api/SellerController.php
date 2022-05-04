@@ -25,5 +25,4 @@ class SellerController extends Controller
     public function seller_prod($id){
         return $this->SellerInterface->seller_prod($id);
     }
-
 }

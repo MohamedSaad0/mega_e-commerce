@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
+   protected $fillable = [
+        'user_id',
+        'shipping_address',
+        'status',
+        'total_price'
+    ];
     use HasFactory;
     public function users() {
         return $this->hasOne(User::class);

@@ -19,11 +19,11 @@ class SellerRepository implements SellerInterface {
     }
 
     public function seller_prod($id) {
-        $seller = Seller::find($id);
-        $seller_prod = Product::find($id);
-        return $seller->product;
-        // $products = Seller::where('id', $id)->with('products:id,name,description')->get();
-        // return $products;
-        dd($products);
+        $products = Seller::where('id', $id)->with('products')->get();
+        if(!$products->isEmpty()){
+
+            return response()->json(["Data" => $products, "Message" => "Success"]);
+        }
+        return response()->json(["Message" => "Error invalid seller"]);
     }
 }

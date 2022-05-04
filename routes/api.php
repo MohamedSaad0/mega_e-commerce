@@ -7,6 +7,7 @@ use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\api\SellerController;
 use App\Http\Controllers\api\ApiAuthController;
 use App\Http\Controllers\api\ProductController;
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\ApiCategoryController;
 
 /*
@@ -44,21 +45,14 @@ Route::group(["middleware" => ["auth:sanctum"]], function(){
     // user cart
     Route::get('cart/view', [CartController::class, 'userCart']);
     // Order Checkout
-    Route::post('orders/checkout', [OrderController::class, 'checkout']);
-
+    Route::post('order/store', [OrderController::class, 'store']);
+    Route::get('order/index', [OrderController::class, 'index']);
     /////////////////// category ///////////////////
     // show all category
     Route::get("/category/index", [ApiCategoryController::class, "index"])->name("api.category.index");
-    // // add new category
-    // Route::post("/category/store", [ApiCategoryController::class, "store"])->name("api.category.store");
-    // show one category
-    // send related products to the category
+
     Route::get("/category/show/{id}", [ApiCategoryController::class, "show"])->name("api.category.show");
-    // update one category
-    // Route::post("/category/update/{id}", [ApiCategoryController::class, "update"])->name("api.category.update");
-    // destroy one category
-    // Route::get("/category/destroy/{id}", [ApiCategoryController::class, "destroy"])->name("api.category.destroy");
-/////////////////// category ///////////////////
+    /////////////////// category ///////////////////
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +66,11 @@ Route::get('product/{id}', [ProductController::class,'show']);
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('seller/index',[SellerController::class, 'index']);
 Route::get('seller_prod/{id}', [SellerController::class,'seller_prod']);
+Route::get('seller_prod', [SellerController::class,'sellerProducts']);
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                                         Orders                                        //
 ///////////////////////////////////////////////////////////////////////////////////////////
+Route::get('category/view/{id}',[CategoryController::class, 'relatedProducts']);
+
 
