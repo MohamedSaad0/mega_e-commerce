@@ -19,7 +19,7 @@ class Order extends Model
     ];
     use HasFactory;
     public function users() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class,'user_id', 'id');
     }
 
     public function carts(){

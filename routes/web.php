@@ -66,3 +66,5 @@ Route::patch('/seller/update/{id}', [SellerController::class, 'update']);
 //                                         Orders                                         //
 ///////////////////////////////////////////////////////////////////////////////////////////
 Route::get('orders/index', [OrderController::class, 'index'])->name('order.index');
+Route::get('order/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+Route::patch('order/update/{id}', [OrderController::class, 'update'])->name('order.update');

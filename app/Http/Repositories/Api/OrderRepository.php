@@ -12,13 +12,13 @@ class OrderRepository implements OrderInterface {
 
     public function index() {
 
-        $orders = Order_Product::with('orders:id,total_price,shipping_address,status', 'products:id,name,description,price')        ->whereHas('orders',function($query){
+        $orders = Order_Product::with('orders:id,total_price,shipping_address,status', 'products:id,name,description,price')->whereHas('orders',function($query){
             $query->where('user_id',Auth()->user()->id);})->get();
 
         if(!$orders->isEmpty()){
             return response()->json(["data" => $orders,"message" => "Success"]);
         }
-        return response()->json(["message" => "Error couldn`t find data"]);
+        return response()->json(["data" => [],"message" => "No available orders"]);
     }
 
     public function store($request)
@@ -41,9 +41,8 @@ class OrderRepository implements OrderInterface {
             $price = $selectedProduct->price;
             $count = $product->quantity;
             $total_cost = $price * $count;
-
             $order_product = Order_Product::create([
-                'product_id' => $product->id,
+                'product_id' => $selectedProduct->id,
                 'order_id' => $order->id,
                 'product_quantity' => $count,
                 'price' => $price,
@@ -56,4 +55,8 @@ class OrderRepository implements OrderInterface {
         return [Order::where('id', $order->id)->with('products')->first()];
 }
 
+
+
 }
+
+

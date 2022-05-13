@@ -27,11 +27,13 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
-    {
-        //
+    public function edit($id) {
+        return $this->_OrderInterface->edit($id);
     }
 
+    public function update($request, $id) {
+        return $this->_OrderInterface->update($request, $id);
+    }
     /**
      * Remove the specified resource from storage.
      *
