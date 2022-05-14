@@ -7,7 +7,7 @@ Applied repository pattern and custom request.
 ### Dashboard
 Within the dashboard, the admin can create/view/edit/delete sellers, products, and categories, and also can view all orders with their current status and change order status.
 
-#### APIs were consumed in a mobile app (flutter), demo video for the app https://drive.google.com/file/d/11u5rFjXjAxvbigFP4Eors-9MOQktUXs2/view.
+#### APIs were consumed in a mobile app using (flutter).
 #### Total of six controllers (repositories) detailed breakdown:-
 ##### AuthController consists of four end points (register,login,forgot_password & logout)
 
